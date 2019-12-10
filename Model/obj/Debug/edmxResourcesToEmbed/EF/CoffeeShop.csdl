@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLCoffeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ContentContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="DienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="TenDN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="DatHangs" Relationship="Self.FK_DatHang_Customer" FromRole="Customer" ToRole="DatHang" />
+    <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_Customer" FromRole="Customer" ToRole="Feedback" />
+  </EntityType>
+  <EntityType Name="DatHang">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="CustomerID" Type="Int32" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Other" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Town" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Passcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Papyment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_DatHang_Customer" FromRole="DatHang" ToRole="Customer" />
+    <NavigationProperty Name="ThongTinDatHangs" Relationship="Self.FK_ThongTinDatHang_DatHang" FromRole="DatHang" ToRole="ThongTinDatHang" />
+  </EntityType>
+  <EntityType Name="Feedback">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCustomer" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ContentFeedback" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_Feedback_Customer" FromRole="Feedback" ToRole="Customer" />
+    <Property Name="Browser" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="LoaiThucDon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ThucDons" Relationship="Self.FK_ThucDon_LoaiThucDon" FromRole="LoaiThucDon" ToRole="ThucDon" />
+  </EntityType>
+  <EntityType Name="LoaiThucUong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UrlTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="SeoTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="ShowOnHome" Type="Boolean" />
+    <NavigationProperty Name="ThucUongs" Relationship="Self.FK_ThucUong_LoaiThucUong" FromRole="LoaiThucUong" ToRole="ThucUong" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Dissplayname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="TypeAccount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ThongTinDatHang">
+    <Key>
+      <PropertyRef Name="OrderID" />
+      <PropertyRef Name="FoodID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="FoodID" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <NavigationProperty Name="DatHang" Relationship="Self.FK_ThongTinDatHang_DatHang" FromRole="ThongTinDatHang" ToRole="DatHang" />
+    <NavigationProperty Name="ThucUong" Relationship="Self.FK_ThongTinDatHang_ThucUong" FromRole="ThongTinDatHang" ToRole="ThucUong" />
+  </EntityType>
+  <EntityType Name="ThucDon">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="Submenu" Type="Int32" />
+    <Property Name="Multilevel" Type="Boolean" />
+    <NavigationProperty Name="LoaiThucDon" Relationship="Self.FK_ThucDon_LoaiThucDon" FromRole="ThucDon" ToRole="LoaiThucDon" />
+  </EntityType>
+  <EntityType Name="ThucUong">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UrlTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="IDCaterogy" Type="Int32" />
+    <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="MoreImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Quality" Type="Int32" />
+    <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ViewCount" Type="Int32" />
+    <NavigationProperty Name="LoaiThucUong" Relationship="Self.FK_ThucUong_LoaiThucUong" FromRole="ThucUong" ToRole="LoaiThucUong" />
+    <NavigationProperty Name="ThongTinDatHangs" Relationship="Self.FK_ThongTinDatHang_ThucUong" FromRole="ThucUong" ToRole="ThongTinDatHang" />
+  </EntityType>
+  <Association Name="FK_DatHang_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="DatHang" Type="Self.DatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="DatHang">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Feedback_Customer">
+    <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+    <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customer">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Feedback">
+        <PropertyRef Name="IDCustomer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThongTinDatHang_DatHang">
+    <End Role="DatHang" Type="Self.DatHang" Multiplicity="1" />
+    <End Role="ThongTinDatHang" Type="Self.ThongTinDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DatHang">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ThongTinDatHang">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThucDon_LoaiThucDon">
+    <End Role="LoaiThucDon" Type="Self.LoaiThucDon" Multiplicity="0..1" />
+    <End Role="ThucDon" Type="Self.ThucDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThucDon">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ThucDon">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThucUong_LoaiThucUong">
+    <End Role="LoaiThucUong" Type="Self.LoaiThucUong" Multiplicity="0..1" />
+    <End Role="ThucUong" Type="Self.ThucUong" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiThucUong">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ThucUong">
+        <PropertyRef Name="IDCaterogy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ThongTinDatHang_ThucUong">
+    <End Role="ThucUong" Type="Self.ThucUong" Multiplicity="1" />
+    <End Role="ThongTinDatHang" Type="Self.ThongTinDatHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ThucUong">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ThongTinDatHang">
+        <PropertyRef Name="FoodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLCoffeeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Contacts" EntityType="Self.Contact" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="DatHangs" EntityType="Self.DatHang" />
+    <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+    <EntitySet Name="LoaiThucDons" EntityType="Self.LoaiThucDon" />
+    <EntitySet Name="LoaiThucUongs" EntityType="Self.LoaiThucUong" />
+    <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+    <EntitySet Name="ThongTinDatHangs" EntityType="Self.ThongTinDatHang" />
+    <EntitySet Name="ThucDons" EntityType="Self.ThucDon" />
+    <EntitySet Name="ThucUongs" EntityType="Self.ThucUong" />
+    <AssociationSet Name="FK_DatHang_Customer" Association="Self.FK_DatHang_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="DatHang" EntitySet="DatHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Feedback_Customer" Association="Self.FK_Feedback_Customer">
+      <End Role="Customer" EntitySet="Customers" />
+      <End Role="Feedback" EntitySet="Feedbacks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThongTinDatHang_DatHang" Association="Self.FK_ThongTinDatHang_DatHang">
+      <End Role="DatHang" EntitySet="DatHangs" />
+      <End Role="ThongTinDatHang" EntitySet="ThongTinDatHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThucDon_LoaiThucDon" Association="Self.FK_ThucDon_LoaiThucDon">
+      <End Role="LoaiThucDon" EntitySet="LoaiThucDons" />
+      <End Role="ThucDon" EntitySet="ThucDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThucUong_LoaiThucUong" Association="Self.FK_ThucUong_LoaiThucUong">
+      <End Role="LoaiThucUong" EntitySet="LoaiThucUongs" />
+      <End Role="ThucUong" EntitySet="ThucUongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ThongTinDatHang_ThucUong" Association="Self.FK_ThongTinDatHang_ThucUong">
+      <End Role="ThucUong" EntitySet="ThucUongs" />
+      <End Role="ThongTinDatHang" EntitySet="ThongTinDatHangs" />
+    </AssociationSet>
+    <EntitySet Name="ChiNhanhs" EntityType="QLCoffeeModel.ChiNhanh" />
+  </EntityContainer>
+  <EntityType Name="ChiNhanh">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="UrlTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+  </EntityType>
+</Schema>

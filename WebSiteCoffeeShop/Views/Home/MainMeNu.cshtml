@@ -1,0 +1,156 @@
+﻿@model List<Model.EF.ThucDon>
+<ul>
+    <a href="HomePage.html">
+        <img src="~/Assets/Client/Picture/HomePage/Logo.png" alt="Error" title="HomePage" />
+    </a>
+    @{ 
+        var session = (WebSiteCoffeeShop.Common.AccLogin)Session[WebSiteCoffeeShop.Common.CommonConstants.Account_Session];
+    }
+
+    @if (session == null)
+    {
+        foreach (var item in Model.Where(x => x.Submenu == null))
+        {
+            var subMenu = Model.Where(x => x.Submenu == item.ID);
+            if (item.Text != "Tên KH")
+            {
+                if (item.Multilevel == false)
+                {
+            <li>
+                <a href="@item.Link">@item.Text</a>
+                <ul class="Menu-ex">
+                    @foreach (var item2 in Model.Where(x => x.Submenu != null))
+                    {
+                        if (item2.Submenu == item.ID)
+                        {
+                            <li><a href="@item2.Link">@item2.Text</a></li>
+                        }
+                    }
+                </ul>
+            </li>
+                }
+                else
+                {
+            <li>
+                <a href="@item.Link">@item.Text</a>
+                <ul class="Menu-ex">
+                    @foreach (var item3 in Model.Where(x => x.Submenu != null))
+                    {
+                        if (item3.Submenu == item.ID)
+                        {
+                            <li><a href="@item3.Link">@item3.Text</a></li>
+                        }
+                    }
+                </ul>
+            </li>
+                }
+            }
+        }
+    }
+    else
+    {
+        foreach(var item in Model.Where(x=>x.Submenu==null))
+        {
+            var subMenu = Model.Where(x => x.Submenu == item.ID);
+            if(item.Text!="THẺ")
+            {
+                if(item.Multilevel==false)
+                {
+                    <li>
+                        <a href="@item.Link">@item.Text</a>
+                        <ul class="Menu-ex">
+                            @foreach(var item2 in Model.Where(x=>x.Submenu!=null))
+                            {
+                                if(item2.Submenu==item.ID)
+                                {
+                                    <li><a href="@item2.Link">@item2.Text</a></li>
+                                }
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        @if(item.Text=="Tên KH")
+                        {
+                            <a href="@item.Link">@session.UserName</a>
+                            <ul class="Menu-ex">
+                                @foreach(var item2 in Model.Where(x=>x.Submenu!=null))
+                                {
+                                    if(item2.Submenu==item.ID)
+                                    {
+                                        <li><a href="@item2.Link">@item2.Text</a></li>
+                                    }
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@item.Link">@item.Text</a>
+                                <ul class="Menu-ex">
+                                    @foreach(var item3 in Model.Where(x=>x.Submenu!=null))
+                                    {
+                                        if(item3.Submenu==item.ID)
+                                        {
+                                            <li><a href="@item3.Link">@item3.Text</a></li>
+                                        }
+                                    }
+                                </ul>
+                                </li>
+                        }
+                    </li>
+                }
+            }
+        }
+    }
+    @*<li>
+        <a href="#">CÀ PHÊ</a>
+        <ul class="Menu-ex">
+            <li><a href="WebCon/Espresso.html">Espresso</a></li>
+            <li><a href="WebCon/Robusta.html">Robusta</a></li>
+            <li><a href="WebCon/Moka.html">Moka</a></li>
+            <li><a href="WebCon/Arabica.html">Arabica</a></li>
+            <li><a href="WebCon/Culi.html">Culi</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">THỰC ĐƠN</a>
+        <ul class="Menu-ex">
+            <li><a href="WebCon/Cookies.html">Bánh</a></li>
+            <li><a href="WebCon/Coffee.html">Cà Phê</a></li>
+            <li><a href="WebCon/Frappucino.html">Đá Xay</a></li>
+            <li><a href="WebCon/Tea.html">Trà</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">QUÁN CÀ PHÊ</a>
+        <ul class="Menu-ex">
+            <li><a href="WebCon3/CGCP.html">Chương trình chuyên gia cà phê</a></li>
+            <li><a href="#">Cộng đồng trực tuyến</a></li>
+            <li><a href="WebCon3/TKCH.html">Thiết kế cửa hàng</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">TRÁCH NHIỆM</a>
+        <ul class="Menu-ex">
+            <li><a href="#">Tìm nguồn cung ứng có đạo đức</a></li>
+            <li><a href="#">Môi trường</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">VỀ CHÚNG TÔI</a>
+        <ul class="Menu-ex">
+            <li><a href="WebCon4/Disan.html">Di sản</a></li>
+            <li><a href="WebCon4/CHNN.html">Cơ hội nghề nhiệp</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">THẺ</a>
+        <ul class="Menu-ex">
+            <li><a href="#">Quản lý tài khoản</a></li>
+            <li><a href="#">Thông tin khác</a></li>
+        </ul>
+    </li>*@
+</ul>

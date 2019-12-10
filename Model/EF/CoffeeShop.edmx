@@ -1,0 +1,701 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="QLCoffeeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChiNhanh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="UrlTitle" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Image" Type="varchar" MaxLength="250" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Topic" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContentContact" Type="ntext" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="250" />
+          <Property Name="NgaySinh" Type="datetime" />
+          <Property Name="DienThoai" Type="varchar" MaxLength="15" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="150" />
+          <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+          <Property Name="TenDN" Type="varchar" MaxLength="50" />
+          <Property Name="MatKhau" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DatHang">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="State" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Other" Type="nvarchar" MaxLength="250" />
+          <Property Name="Town" Type="nvarchar" MaxLength="100" />
+          <Property Name="Passcode" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Papyment" Type="nvarchar" MaxLength="150" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDCustomer" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ContentFeedback" Type="nvarchar" MaxLength="250" />
+          <Property Name="Image" Type="varchar" MaxLength="250" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" />
+          <Property Name="Browser" Type="bit" />
+        </EntityType>
+        <EntityType Name="LoaiThucDon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LoaiThucUong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="UrlTitle" Type="varchar" MaxLength="250" />
+          <Property Name="SeoTitle" Type="varchar" MaxLength="250" />
+          <Property Name="ShowOnHome" Type="bit" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Dissplayname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="varchar" MaxLength="15" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Ngaysinh" Type="datetime" />
+          <Property Name="Image" Type="varchar" MaxLength="250" />
+          <Property Name="TypeAccount" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="ThongTinDatHang">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="FoodID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="ThucDon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Text" Type="nvarchar" MaxLength="250" />
+          <Property Name="Link" Type="varchar" MaxLength="250" />
+          <Property Name="Target" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="TypeID" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Submenu" Type="int" />
+          <Property Name="Multilevel" Type="bit" />
+        </EntityType>
+        <EntityType Name="ThucUong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="UrlTitle" Type="varchar" MaxLength="250" />
+          <Property Name="IDCaterogy" Type="int" />
+          <Property Name="Code" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Image" Type="varchar" MaxLength="250" />
+          <Property Name="MoreImage" Type="xml" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="int" />
+          <Property Name="Detail" Type="ntext" />
+          <Property Name="ViewCount" Type="int" />
+        </EntityType>
+        <Association Name="FK_DatHang_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="DatHang" Type="Self.DatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DatHang">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="IDCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongTinDatHang_DatHang">
+          <End Role="DatHang" Type="Self.DatHang" Multiplicity="1" />
+          <End Role="ThongTinDatHang" Type="Self.ThongTinDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatHang">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThongTinDatHang">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongTinDatHang_ThucUong">
+          <End Role="ThucUong" Type="Self.ThucUong" Multiplicity="1" />
+          <End Role="ThongTinDatHang" Type="Self.ThongTinDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThucUong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThongTinDatHang">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThucDon_LoaiThucDon">
+          <End Role="LoaiThucDon" Type="Self.LoaiThucDon" Multiplicity="0..1" />
+          <End Role="ThucDon" Type="Self.ThucDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThucDon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThucDon">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThucUong_LoaiThucUong">
+          <End Role="LoaiThucUong" Type="Self.LoaiThucUong" Multiplicity="0..1" />
+          <End Role="ThucUong" Type="Self.ThucUong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThucUong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThucUong">
+              <PropertyRef Name="IDCaterogy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLCoffeeModelStoreContainer">
+          <EntitySet Name="ChiNhanh" EntityType="Self.ChiNhanh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DatHang" EntityType="Self.DatHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiThucDon" EntityType="Self.LoaiThucDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiThucUong" EntityType="Self.LoaiThucUong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongTinDatHang" EntityType="Self.ThongTinDatHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThucDon" EntityType="Self.ThucDon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThucUong" EntityType="Self.ThucUong" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DatHang_Customer" Association="Self.FK_DatHang_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="DatHang" EntitySet="DatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Customer" Association="Self.FK_Feedback_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Feedback" EntitySet="Feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongTinDatHang_DatHang" Association="Self.FK_ThongTinDatHang_DatHang">
+            <End Role="DatHang" EntitySet="DatHang" />
+            <End Role="ThongTinDatHang" EntitySet="ThongTinDatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongTinDatHang_ThucUong" Association="Self.FK_ThongTinDatHang_ThucUong">
+            <End Role="ThucUong" EntitySet="ThucUong" />
+            <End Role="ThongTinDatHang" EntitySet="ThongTinDatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThucDon_LoaiThucDon" Association="Self.FK_ThucDon_LoaiThucDon">
+            <End Role="LoaiThucDon" EntitySet="LoaiThucDon" />
+            <End Role="ThucDon" EntitySet="ThucDon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThucUong_LoaiThucUong" Association="Self.FK_ThucUong_LoaiThucUong">
+            <End Role="LoaiThucUong" EntitySet="LoaiThucUong" />
+            <End Role="ThucUong" EntitySet="ThucUong" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLCoffeeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Topic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContentContact" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+          <Property Name="DienThoai" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="TenDN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DatHangs" Relationship="Self.FK_DatHang_Customer" FromRole="Customer" ToRole="DatHang" />
+          <NavigationProperty Name="Feedbacks" Relationship="Self.FK_Feedback_Customer" FromRole="Customer" ToRole="Feedback" />
+        </EntityType>
+        <EntityType Name="DatHang">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Other" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Town" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Passcode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Papyment" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_DatHang_Customer" FromRole="DatHang" ToRole="Customer" />
+          <NavigationProperty Name="ThongTinDatHangs" Relationship="Self.FK_ThongTinDatHang_DatHang" FromRole="DatHang" ToRole="ThongTinDatHang" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDCustomer" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ContentFeedback" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Feedback_Customer" FromRole="Feedback" ToRole="Customer" />
+          <Property Name="Browser" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="LoaiThucDon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ThucDons" Relationship="Self.FK_ThucDon_LoaiThucDon" FromRole="LoaiThucDon" ToRole="ThucDon" />
+        </EntityType>
+        <EntityType Name="LoaiThucUong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UrlTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="SeoTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ShowOnHome" Type="Boolean" />
+          <NavigationProperty Name="ThucUongs" Relationship="Self.FK_ThucUong_LoaiThucUong" FromRole="LoaiThucUong" ToRole="ThucUong" />
+        </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Dissplayname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Ngaysinh" Type="DateTime" Precision="3" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="TypeAccount" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ThongTinDatHang">
+          <Key>
+            <PropertyRef Name="OrderID" />
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="FoodID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="DatHang" Relationship="Self.FK_ThongTinDatHang_DatHang" FromRole="ThongTinDatHang" ToRole="DatHang" />
+          <NavigationProperty Name="ThucUong" Relationship="Self.FK_ThongTinDatHang_ThucUong" FromRole="ThongTinDatHang" ToRole="ThucUong" />
+        </EntityType>
+        <EntityType Name="ThucDon">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Target" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Submenu" Type="Int32" />
+          <Property Name="Multilevel" Type="Boolean" />
+          <NavigationProperty Name="LoaiThucDon" Relationship="Self.FK_ThucDon_LoaiThucDon" FromRole="ThucDon" ToRole="LoaiThucDon" />
+        </EntityType>
+        <EntityType Name="ThucUong">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UrlTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IDCaterogy" Type="Int32" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MoreImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quality" Type="Int32" />
+          <Property Name="Detail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ViewCount" Type="Int32" />
+          <NavigationProperty Name="LoaiThucUong" Relationship="Self.FK_ThucUong_LoaiThucUong" FromRole="ThucUong" ToRole="LoaiThucUong" />
+          <NavigationProperty Name="ThongTinDatHangs" Relationship="Self.FK_ThongTinDatHang_ThucUong" FromRole="ThucUong" ToRole="ThongTinDatHang" />
+        </EntityType>
+        <Association Name="FK_DatHang_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="DatHang" Type="Self.DatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="DatHang">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feedback_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Feedback">
+              <PropertyRef Name="IDCustomer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongTinDatHang_DatHang">
+          <End Role="DatHang" Type="Self.DatHang" Multiplicity="1" />
+          <End Role="ThongTinDatHang" Type="Self.ThongTinDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DatHang">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThongTinDatHang">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThucDon_LoaiThucDon">
+          <End Role="LoaiThucDon" Type="Self.LoaiThucDon" Multiplicity="0..1" />
+          <End Role="ThucDon" Type="Self.ThucDon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThucDon">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThucDon">
+              <PropertyRef Name="TypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThucUong_LoaiThucUong">
+          <End Role="LoaiThucUong" Type="Self.LoaiThucUong" Multiplicity="0..1" />
+          <End Role="ThucUong" Type="Self.ThucUong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LoaiThucUong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThucUong">
+              <PropertyRef Name="IDCaterogy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThongTinDatHang_ThucUong">
+          <End Role="ThucUong" Type="Self.ThucUong" Multiplicity="1" />
+          <End Role="ThongTinDatHang" Type="Self.ThongTinDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThucUong">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ThongTinDatHang">
+              <PropertyRef Name="FoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLCoffeeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contacts" EntityType="Self.Contact" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="DatHangs" EntityType="Self.DatHang" />
+          <EntitySet Name="Feedbacks" EntityType="Self.Feedback" />
+          <EntitySet Name="LoaiThucDons" EntityType="Self.LoaiThucDon" />
+          <EntitySet Name="LoaiThucUongs" EntityType="Self.LoaiThucUong" />
+          <EntitySet Name="TaiKhoans" EntityType="Self.TaiKhoan" />
+          <EntitySet Name="ThongTinDatHangs" EntityType="Self.ThongTinDatHang" />
+          <EntitySet Name="ThucDons" EntityType="Self.ThucDon" />
+          <EntitySet Name="ThucUongs" EntityType="Self.ThucUong" />
+          <AssociationSet Name="FK_DatHang_Customer" Association="Self.FK_DatHang_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="DatHang" EntitySet="DatHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feedback_Customer" Association="Self.FK_Feedback_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Feedback" EntitySet="Feedbacks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongTinDatHang_DatHang" Association="Self.FK_ThongTinDatHang_DatHang">
+            <End Role="DatHang" EntitySet="DatHangs" />
+            <End Role="ThongTinDatHang" EntitySet="ThongTinDatHangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThucDon_LoaiThucDon" Association="Self.FK_ThucDon_LoaiThucDon">
+            <End Role="LoaiThucDon" EntitySet="LoaiThucDons" />
+            <End Role="ThucDon" EntitySet="ThucDons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThucUong_LoaiThucUong" Association="Self.FK_ThucUong_LoaiThucUong">
+            <End Role="LoaiThucUong" EntitySet="LoaiThucUongs" />
+            <End Role="ThucUong" EntitySet="ThucUongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThongTinDatHang_ThucUong" Association="Self.FK_ThongTinDatHang_ThucUong">
+            <End Role="ThucUong" EntitySet="ThucUongs" />
+            <End Role="ThongTinDatHang" EntitySet="ThongTinDatHangs" />
+          </AssociationSet>
+          <EntitySet Name="ChiNhanhs" EntityType="QLCoffeeModel.ChiNhanh" />
+        </EntityContainer>
+        <EntityType Name="ChiNhanh">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="UrlTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLCoffeeModelStoreContainer" CdmEntityContainer="QLCoffeeEntities">
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="QLCoffeeModel.Contact">
+              <MappingFragment StoreEntitySet="Contact">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Topic" ColumnName="Topic" />
+                <ScalarProperty Name="ContentContact" ColumnName="ContentContact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="QLCoffeeModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="TenDN" ColumnName="TenDN" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DatHangs">
+            <EntityTypeMapping TypeName="QLCoffeeModel.DatHang">
+              <MappingFragment StoreEntitySet="DatHang">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="Town" ColumnName="Town" />
+                <ScalarProperty Name="Passcode" ColumnName="Passcode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Papyment" ColumnName="Papyment" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedbacks">
+            <EntityTypeMapping TypeName="QLCoffeeModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Browser" ColumnName="Browser" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="IDCustomer" ColumnName="IDCustomer" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContentFeedback" ColumnName="ContentFeedback" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiThucDons">
+            <EntityTypeMapping TypeName="QLCoffeeModel.LoaiThucDon">
+              <MappingFragment StoreEntitySet="LoaiThucDon">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiThucUongs">
+            <EntityTypeMapping TypeName="QLCoffeeModel.LoaiThucUong">
+              <MappingFragment StoreEntitySet="LoaiThucUong">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UrlTitle" ColumnName="UrlTitle" />
+                <ScalarProperty Name="SeoTitle" ColumnName="SeoTitle" />
+                <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaiKhoans">
+            <EntityTypeMapping TypeName="QLCoffeeModel.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Dissplayname" ColumnName="Dissplayname" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Ngaysinh" ColumnName="Ngaysinh" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="TypeAccount" ColumnName="TypeAccount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongTinDatHangs">
+            <EntityTypeMapping TypeName="QLCoffeeModel.ThongTinDatHang">
+              <MappingFragment StoreEntitySet="ThongTinDatHang">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThucDons">
+            <EntityTypeMapping TypeName="QLCoffeeModel.ThucDon">
+              <MappingFragment StoreEntitySet="ThucDon">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Target" ColumnName="Target" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Submenu" ColumnName="Submenu" />
+                <ScalarProperty Name="Multilevel" ColumnName="Multilevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThucUongs">
+            <EntityTypeMapping TypeName="QLCoffeeModel.ThucUong">
+              <MappingFragment StoreEntitySet="ThucUong">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UrlTitle" ColumnName="UrlTitle" />
+                <ScalarProperty Name="IDCaterogy" ColumnName="IDCaterogy" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="MoreImage" ColumnName="MoreImage" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="ViewCount" ColumnName="ViewCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChiNhanhs">
+            <EntityTypeMapping TypeName="QLCoffeeModel.ChiNhanh">
+              <MappingFragment StoreEntitySet="ChiNhanh">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UrlTitle" ColumnName="UrlTitle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f6db4be8b19a4835911be9afd266d281" Name="Diagram1">
+        <EntityTypeShape EntityType="QLCoffeeModel.Contact" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.Customer" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.DatHang" Width="1.5" PointX="3" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.Feedback" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.LoaiThucDon" Width="1.5" PointX="5.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.LoaiThucUong" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.TaiKhoan" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.ThongTinDatHang" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.ThucDon" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLCoffeeModel.ThucUong" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="QLCoffeeModel.FK_DatHang_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="QLCoffeeModel.FK_Feedback_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="QLCoffeeModel.FK_ThongTinDatHang_DatHang" ManuallyRouted="false" />
+        <AssociationConnector Association="QLCoffeeModel.FK_ThucDon_LoaiThucDon" ManuallyRouted="false" />
+        <AssociationConnector Association="QLCoffeeModel.FK_ThucUong_LoaiThucUong" ManuallyRouted="false" />
+        <AssociationConnector Association="QLCoffeeModel.FK_ThongTinDatHang_ThucUong" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLCoffeeModel.ChiNhanh" Width="1.5" PointX="7.75" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Blended";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var DS_Blended = (List<Model.EF.ThucUong>)ViewBag.DS_Blended;
+}
+
+<style>
+    .sp {
+        width: 270px;
+        height: 280px;
+        float: left;
+        margin-left: 10px;
+        margin-top: 20px;
+    }
+
+        .sp p {
+            color: #000000;
+            font-size: 18px;
+            font-weight: bold;
+        }
+</style>
+
+<h2>Blended</h2>
+@foreach (var item in DS_Blended)
+{
+    <div class="sp">
+
+        <img src="@item.Image" width="150" height="150" alt="error" />
+        <p>@item.Name</p>
+        <p class="dongia">Đơn giá: <span class="gia">@item.Price VNĐ</span></p>
+        <a href="/Cart/AddItem?maDoUong=@item.ID&SoLuong=1"><img class="nutthemvaogiohang" src="~/Legacy/Client/Picture/giohang.png" width="30px" height="30px"></a>
+    </div>
+}
+
+
+
+

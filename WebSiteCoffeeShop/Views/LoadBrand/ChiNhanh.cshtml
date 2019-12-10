@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "ChiNhanh";
+    Layout = "~/Views/Shared/_Index.cshtml";
+    var DSChiNhanh = (List<Model.EF.ChiNhanh>)ViewBag.DSChiNhanh;
+}
+<style>
+    .sp {
+        width: 270px;
+        height: 280px;
+        float: left;
+        margin-left: 10px;
+        margin-top: 20px;
+    }
+
+        .sp p {
+            color: #000000;
+            font-size: 18px;
+            font-weight: bold;
+        }
+</style>
+<h2>ChiNhanh</h2>
+@foreach (var item in DSChiNhanh)
+{
+    <div class="sp">
+
+        <img src="@item.Image" width="150" height="150" alt="error" />
+        <p>@item.Name</p>
+       
+        
+    </div>
+}
+
